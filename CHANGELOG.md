@@ -4,6 +4,12 @@ All notable changes to **High Summoner** are documented here. This project
 follows [Keep a Changelog](https://keepachangelog.com/) and
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.1] - 2026-06-30
+
+### Added
+- **Avatar** class feature (level 1) in the `class-archetype` pack, granting the
+  archetype's avatar companion.
+
 ## [1.0.0] - 2026-06-30
 
 ### Added
@@ -19,4 +25,5 @@ follows [Keep a Changelog](https://keepachangelog.com/) and
   the system treats eidolons (`scripts/avatar-sheet.js`; uses lib-wrapper with a
   render-hook fallback).
 
+[1.0.1]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.1
 [1.0.0]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.0
