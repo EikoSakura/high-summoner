@@ -4,6 +4,11 @@ All notable changes to **High Summoner** are documented here. This project
 follows [Keep a Changelog](https://keepachangelog.com/) and
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.3] - 2026-06-30
+
+### Changed
+- Fix em-dash encoding in the module description and changelog (corrupted in 1.0.2).
+
 ## [1.0.2] - 2026-06-30
 
 ### Changed
@@ -20,7 +25,7 @@ follows [Keep a Changelog](https://keepachangelog.com/) and
 ### Added
 - Initial release.
 - **High Summoner** class archetype for the Pathfinder 2e Summoner (`class-archetype` pack).
-- **Avatar** â€” an eidolon-style summoned companion (`avatar` pack), plus the custom
+- **Avatar** — an eidolon-style summoned companion (`avatar` pack), plus the custom
   `avatar` trait (registered as a creature, equipment, and feat trait with tooltips).
 - **Luster** weapon trait.
 - Themed **spells** (`spells` pack).
@@ -33,3 +38,4 @@ follows [Keep a Changelog](https://keepachangelog.com/) and
 [1.0.1]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.1
 [1.0.0]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.0
 [1.0.2]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.2
+[1.0.3]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.3

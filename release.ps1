@@ -30,6 +30,11 @@ param(
 $ErrorActionPreference = "Stop"
 Set-Location -LiteralPath $PSScriptRoot
 
+# Always read/write as UTF-8 (no BOM). PowerShell 5.1's Get-Content/Out-File
+# default to the ANSI codepage, which corrupts non-ASCII characters (em dashes,
+# accents) on round-trip. .NET's ReadAllText/WriteAllText keep UTF-8 intact.
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+
 function Die([string]$m) { Write-Host "release: $m" -ForegroundColor Red; exit 1 }
 
 # --- preconditions ---
@@ -41,7 +46,7 @@ if ($branch -ne "main") { Die "must be on the 'main' branch (currently on '$bran
 # --- current version ---
 $modulePath = Join-Path $PSScriptRoot "module.json"
 if (-not (Test-Path $modulePath)) { Die "module.json not found." }
-$current = [version]((Get-Content -Raw -LiteralPath $modulePath | ConvertFrom-Json).version)
+$current = [version](([System.IO.File]::ReadAllText($modulePath) | ConvertFrom-Json).version)
 
 # --- compute next version ---
 switch -Regex ($Bump.Trim()) {
@@ -67,11 +72,11 @@ if ($DryRun) {
 }
 
 # --- 1) stamp version into module.json (only the version value changes) ---
-$raw = Get-Content -Raw -LiteralPath $modulePath
+$raw = [System.IO.File]::ReadAllText($modulePath)
 $replacement = '${1}' + $ver + '${2}'
 $new = $raw -replace '("version"\s*:\s*")[^"]*(")', $replacement
 if ($new -eq $raw) { Die "could not find the version field in module.json." }
-[System.IO.File]::WriteAllText($modulePath, $new)
+[System.IO.File]::WriteAllText($modulePath, $new, $utf8NoBom)
 
 # --- 2) CHANGELOG entry ---
 $clPath = Join-Path $PSScriptRoot "CHANGELOG.md"
@@ -80,7 +85,7 @@ if (Test-Path $clPath) {
   $today   = Get-Date -Format "yyyy-MM-dd"
   $section = "## [$ver] - $today`n`n### Changed`n- $Notes`n`n"
   $link    = "[$ver]: https://github.com/EikoSakura/high-summoner/releases/tag/$tag"
-  $cl = Get-Content -Raw -LiteralPath $clPath
+  $cl = [System.IO.File]::ReadAllText($clPath)
   $marker = $cl.IndexOf("## [")
   if ($marker -ge 0) {
     $cl = $cl.Substring(0, $marker) + $section + $cl.Substring($marker)
@@ -88,7 +93,7 @@ if (Test-Path $clPath) {
     $cl = $cl.TrimEnd() + "`n`n" + $section
   }
   $cl = $cl.TrimEnd() + "`n" + $link + "`n"
-  [System.IO.File]::WriteAllText($clPath, $cl)
+  [System.IO.File]::WriteAllText($clPath, $cl, $utf8NoBom)
 }
 
 # --- 3) commit everything (pack edits + version + changelog); no AI attribution ---
