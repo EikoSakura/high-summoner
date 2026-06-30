@@ -1,0 +1,53 @@
+name: Release
+
+# Publishes a GitHub release whenever a version tag (vX.Y.Z) is pushed.
+# Attaches module.json (the manifest) and module.zip (the package) so Foundry
+# and The Forge can install/update via the `latest` release URLs in module.json.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Derive version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Stamp version into module.json
+        run: |
+          tmp="$(mktemp)"
+          jq --arg v "${{ steps.version.outputs.version }}" '.version = $v' module.json > "$tmp"
+          mv "$tmp" module.json
+
+      - name: Verify module.json version matches the tag
+        run: |
+          have="$(jq -r '.version' module.json)"
+          want="${{ steps.version.outputs.version }}"
+          if [ "$have" != "$want" ]; then
+            echo "module.json version ($have) does not match tag ($want)"; exit 1
+          fi
+
+      - name: Build module.zip
+        run: |
+          zip -r module.zip . \
+            -x ".git/*" ".github/*" ".claude/*" ".gitignore" ".gitattributes" "*.zip"
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: High Summoner ${{ github.ref_name }}
+          files: |
+            module.json
+            module.zip
+          fail_on_unmatched_files: true
+          generate_release_notes: true

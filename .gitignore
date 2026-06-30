@@ -1,0 +1,16 @@
+# Local Claude Code tooling — never shipped or committed
+.claude/
+
+# Build artifacts
+*.zip
+module.zip
+
+# Foundry LevelDB pack runtime files (recreated on use; not content)
+packs/**/LOCK
+packs/**/LOG
+packs/**/LOG.old
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,117 @@
+{
+  "id": "high-summoner",
+  "title": "High Summoner",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "authors": [
+    {
+      "name": "Wren Verity",
+      "flags": {}
+    }
+  ],
+  "url": "https://github.com/EikoSakura/high-summoner",
+  "manifest": "https://github.com/EikoSakura/high-summoner/releases/latest/download/module.json",
+  "download": "https://github.com/EikoSakura/high-summoner/releases/latest/download/module.zip",
+  "readme": "https://github.com/EikoSakura/high-summoner/blob/main/README.md",
+  "changelog": "https://github.com/EikoSakura/high-summoner/blob/main/CHANGELOG.md",
+  "bugs": "https://github.com/EikoSakura/high-summoner/issues",
+  "license": "MIT",
+  "media": [
+    {
+      "type": "icon",
+      "url": "https://raw.githubusercontent.com/EikoSakura/high-summoner/main/assets/icons/high-summoner.png"
+    }
+  ],
+  "esmodules": [
+    "scripts/utils.js",
+    "scripts/avatar-sheet.js",
+    "scripts/egi-dailies.js"
+  ],
+  "relationships": {
+    "recommends": [
+      {
+        "id": "lib-wrapper",
+        "type": "module",
+        "reason": "Cleanly wraps the PF2e character sheet so avatars suppress the attribute-boost EDIT glow with no render flicker. Falls back to a render hook if absent."
+      },
+      {
+        "id": "pf2e-dailies",
+        "type": "module",
+        "reason": "Adds an Egi Companion daily so avatars can prepare familiar abilities."
+      }
+    ]
+  },
+  "flags": {
+    "canUpload": true,
+    "high-summoner": {
+      "pf2e-homebrew": {
+        "creatureTraits": {
+          "avatar": {
+            "label": "Avatar",
+            "description": "A creature with this trait is the High Summoner's avatar. An item with this trait can be worn by an avatar. An avatar can have up to two items invested."
+          }
+        },
+        "equipmentTraits": {
+          "avatar": {
+            "label": "Avatar",
+            "description": "A creature with this trait is the High Summoner's avatar. An item with this trait can be worn by an avatar. An avatar can have up to two items invested."
+          }
+        },
+        "featTraits": {
+          "avatar": {
+            "label": "Avatar",
+            "description": "Feats with this and the Evolution trait affect your avatar instead of you, typically by granting it additional physical capabilities."
+          }
+        },
+        "weaponTraits": {
+          "luster": {
+            "label": "Luster",
+            "description": "This weapon can channel light energy. You gain the Shine free action while wielding a resonant weapon."
+          }
+        }
+      }
+    }
+  },
+  "packs": [
+    {
+      "name": "avatar",
+      "label": "Avatars",
+      "path": "packs/avatar",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "pf2e",
+      "flags": {}
+    },
+    {
+      "name": "spells",
+      "label": "Spells",
+      "path": "packs/spells",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "pf2e",
+      "flags": {}
+    },
+    {
+      "name": "class-archetype",
+      "label": "Class Archetype",
+      "path": "packs/class-archetype",
+      "type": "Item",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      },
+      "system": "pf2e",
+      "flags": {}
+    }
+  ],
+  "description": "A Pathfinder 2e class archetype for the Summoner — the High Summoner. Adds the archetype and its avatar (an eidolon-style companion) with the custom avatar trait, themed spells, the Luster weapon trait, and optional PF2e Dailies integration. Unofficial fan content for Foundry VTT v13."
+}
