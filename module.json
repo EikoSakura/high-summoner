@@ -1,7 +1,7 @@
 {
   "id": "high-summoner",
   "title": "High Summoner",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": {
     "minimum": "13",
     "verified": "13"
@@ -75,6 +75,18 @@
       }
     }
   },
+  "packFolders": [
+    {
+      "name": "High Summoner",
+      "sorting": "m",
+      "color": "#2e8b6f",
+      "packs": [
+        "class-archetype",
+        "avatar",
+        "spells"
+      ]
+    }
+  ],
   "packs": [
     {
       "name": "avatar",
@@ -113,5 +125,5 @@
       "flags": {}
     }
   ],
-  "description": "A Pathfinder 2e class archetype for the Summoner — the High Summoner. Adds the archetype and its avatar (an eidolon-style companion) with the custom avatar trait, themed spells, the Luster weapon trait, and optional PF2e Dailies integration. Unofficial fan content for Foundry VTT v13."
+  "description": "A Pathfinder 2e class archetype for the Summoner â€” the High Summoner. Adds the archetype and its avatar (an eidolon-style companion) with the custom avatar trait, themed spells, the Luster weapon trait, and optional PF2e Dailies integration. Unofficial fan content for Foundry VTT v13."
 }

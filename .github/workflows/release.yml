@@ -40,7 +40,7 @@ jobs:
       - name: Build module.zip
         run: |
           zip -r module.zip . \
-            -x ".git/*" ".github/*" ".claude/*" ".gitignore" ".gitattributes" "*.zip"
+            -x ".git/*" ".github/*" ".claude/*" ".gitignore" ".gitattributes" "release.ps1" "release.bat" "*.zip"
 
       - name: Publish release
         uses: softprops/action-gh-release@v2
