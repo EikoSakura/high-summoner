@@ -4,6 +4,11 @@ All notable changes to **High Summoner** are documented here. This project
 follows [Keep a Changelog](https://keepachangelog.com/) and
 [Semantic Versioning](https://semver.org/).
 
+## [1.0.4] - 2026-06-30
+
+### Changed
+- Added support spells: Cure (with vs. Living and vs. Undead variants), Dia, Protect, and Shell (with spell effects), plus the Additional Avatar feat and new spell icons.
+
 ## [1.0.3] - 2026-06-30
 
 ### Changed
@@ -39,3 +44,4 @@ follows [Keep a Changelog](https://keepachangelog.com/) and
 [1.0.0]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.0
 [1.0.2]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.2
 [1.0.3]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.3
+[1.0.4]: https://github.com/EikoSakura/high-summoner/releases/tag/v1.0.4
